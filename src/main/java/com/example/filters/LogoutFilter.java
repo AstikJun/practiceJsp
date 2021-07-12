@@ -21,8 +21,7 @@ public class LogoutFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
 
 
-
-        HttpSession session=request.getSession(false);
+        HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("name") == null) {
             response.sendRedirect("login.jsp");
         } else {

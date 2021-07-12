@@ -16,7 +16,7 @@
 <a href="logoutServlet">Logout</a>
 <a href="profileServlet">Profile</a>
 <br>
-<h1>Hello! This is your profile page.</h1>
+<h1>Hello! This is your profile page:</h1>
 <h4>
   Your username is:  <%=session.getAttribute("name")%>
 </h4>

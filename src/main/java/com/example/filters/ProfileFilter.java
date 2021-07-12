@@ -20,16 +20,14 @@ public class ProfileFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        PrintWriter out=res.getWriter();
-
-
-        HttpSession session=request.getSession(false);
+        HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("name") == null) {
             response.sendRedirect("login.jsp");
         } else {
-            String name=(String)session.getAttribute("name");
+            String name = (String) session.getAttribute("name");
             response.sendRedirect("profile.jsp");
         }
+
     }
 
     @Override
