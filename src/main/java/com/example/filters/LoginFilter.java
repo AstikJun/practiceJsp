@@ -1,4 +1,4 @@
-package com.example;
+package com.example.filters;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 @WebFilter("/servletFilter")
-public class ServletFilter implements Filter {
+public class LoginFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -23,11 +23,18 @@ public class ServletFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("name") == null) {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
-        } else {
-            chain.doFilter(request, response);
+        PrintWriter out = res.getWriter();
+
+        String name = req.getParameter("name");
+        String password = req.getParameter("password");
+
+        if(password.equals("123")){
+            HttpSession session = request.getSession();
+            session.setAttribute("name", name);
+            response.sendRedirect("profileServlet");
+        }
+        else {
+            response.sendRedirect("login.jsp");
         }
     }
 
