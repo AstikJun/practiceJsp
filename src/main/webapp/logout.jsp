@@ -12,8 +12,8 @@
 </head>
 <body>
 <a href="login.jsp">Login</a>
-<a href="logoutServlet">Logout</a>
-<a href="profileServlet">Profile</a>
+<a href="secured/logoutServlet">Logout</a>
+<a href="secured/profileServlet">Profile</a>
 
 <h1>
     You logged out!

@@ -8,9 +8,9 @@
 </head>
 <body>
 
-<a href="login.jsp">Login</a>|
-<a href="logoutServlet">Logout</a>|
-<a href="profileServlet">Profile</a>
+<a href="login.jsp">Login</a>
+<a href="http://localhost:8080/secured/logoutServlet">Logout</a>
+<a href="http://localhost:8080/secured/profileServlet">Profile</a>
 
 
 </body>

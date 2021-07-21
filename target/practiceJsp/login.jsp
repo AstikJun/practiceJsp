@@ -13,9 +13,9 @@
 <body>
 <h1>Log in</h1>
 <br>
-<form action="loginServlet" method="post">
-    Name:<input type="text" name="name"><br>
-    Password:<input type="password" name="password"><br>
+<form action="LoginServlet" method="post">
+    Name:<input type="text" name="username"><br>
+    Password:<input type="password" name="pass"><br>
     <input type="submit" value="submit">
 
 </form>

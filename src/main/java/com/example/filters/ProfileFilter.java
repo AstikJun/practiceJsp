@@ -8,30 +8,30 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebFilter("/profileFilter")
+@WebFilter("/secured/*")
 public class ProfileFilter implements Filter {
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
 
-    }
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
+        System.out.println("Start Filter");
+
 
         HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("name") == null) {
-            response.sendRedirect("login.jsp");
+
+
+
+        if (session != null && session.getAttribute("username") != null) {
+          //  ((HttpServletResponse) res).sendRedirect("profile.jsp");
+            filterChain.doFilter(request, response);
         } else {
-            String name = (String) session.getAttribute("name");
-            response.sendRedirect("profile.jsp");
+            response.sendRedirect("/login.jsp");
         }
-
     }
 
-    @Override
-    public void destroy() {
 
-    }
 }
+
+

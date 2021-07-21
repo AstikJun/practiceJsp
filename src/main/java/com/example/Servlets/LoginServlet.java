@@ -1,5 +1,7 @@
 package com.example.Servlets;
 
+import com.example.utils.Validate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,25 +11,28 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/loginServlet")
+@WebServlet("/")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        HttpServletRequest request = (HttpServletRequest) req;
 //        HttpServletResponse response = (HttpServletResponse) res;
+        resp.setContentType("text/html");
 
         PrintWriter out = resp.getWriter();
 
-        String name = req.getParameter("name");
-        String password = req.getParameter("password");
-
-        if (password.equals("123")) {
+        String username = req.getParameter("username");
+        String password = req.getParameter("pass");
+        System.out.println(password);
+        if (Validate.checkUser(username,password)) {
             HttpSession session = req.getSession();
-            session.setAttribute("name", name);
-            resp.sendRedirect("profileServlet");
+            session.setAttribute("username", username);
+            System.out.println("True");
+            resp.sendRedirect("/secured/profileServlet");
         } else {
-            out.print("Wrong username or password!");
-            resp.sendRedirect("login.jsp");
+            System.out.println("false");
+            out.print("Wrong password or login");
+            resp.sendRedirect("/");
         }
         out.close();
     }
